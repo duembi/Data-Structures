@@ -1,19 +1,19 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-// İki yönlü bağlı liste düğümü
+// Ãki yÃ¶nlÃ¼ baÃ°lÃ½ liste dÃ¼Ã°Ã¼mÃ¼
 struct node {
     int data;
     struct node *prev;
     struct node *next;
 } *first = NULL;
 
-// Listeyi oluşturur
+// Listeyi oluÃ¾turur
 void Create(int A[], int n) {
     struct node *t, *last;
     int i;
 
-    if (n <= 0) return; // Boş diziler için hiçbir şey yapma
+    if (n <= 0) return; // BoÃ¾ diziler iÃ§in hiÃ§bir Ã¾ey yapma
 
     first = (struct node *)malloc(sizeof(struct node));
     first->data = A[0];
@@ -31,10 +31,10 @@ void Create(int A[], int n) {
     }
 }
 
-// Listeyi ekrana yazdırır
+// Listeyi ekrana yazdÃ½rÃ½r
 void Display(struct node *p) {
     if (p == NULL) {
-        printf("Liste boş.\n");
+        printf("Liste boÃ¾.\n");
         return;
     }
 
@@ -45,7 +45,7 @@ void Display(struct node *p) {
     printf("\n");
 }
 
-// Listenin uzunluğunu döndürür
+// Listenin uzunluÃ°unu dÃ¶ndÃ¼rÃ¼r
 int Length(struct node *p) {
     int len = 0;
     while (p) {
@@ -55,58 +55,58 @@ int Length(struct node *p) {
     return len;
 }
 
-// Listeden bir eleman siler ve silinen elemanın değerini döndürür
+// Listeden bir eleman siler ve silinen elemanÃ½n deÃ°erini dÃ¶ndÃ¼rÃ¼r
 int Delete(struct node *p, int index) {
     struct node *q;
     int i, x = -1;
 
     if (index < 1 || index > Length(p)) {
-        return -1; // Geçersiz indeks kontrolü
+        return -1; // GeÃ§ersiz indeks kontrolÃ¼
     }
 
-    if (index == 1) { // İlk düğümü silme işlemi
-        q = first; // İlk düğümü geçici değişkene ata
-        x = q->data; // Silinen düğümün verisini sakla
-        first = first->next; // İlk düğümü güncelle
+    if (index == 1) { // Ãlk dÃ¼Ã°Ã¼mÃ¼ silme iÃ¾lemi
+        q = first; // Ãlk dÃ¼Ã°Ã¼mÃ¼ geÃ§ici deÃ°iÃ¾kene ata
+        x = q->data; // Silinen dÃ¼Ã°Ã¼mÃ¼n verisini sakla
+        first = first->next; // Ãlk dÃ¼Ã°Ã¼mÃ¼ gÃ¼ncelle
 
         if (first) {
-            first->prev = NULL; // Eğer liste boş değilse, yeni ilk düğümün prev işaretçisini güncelle
+            first->prev = NULL; // EÃ°er liste boÃ¾ deÃ°ilse, yeni ilk dÃ¼Ã°Ã¼mÃ¼n prev iÃ¾aretÃ§isini gÃ¼ncelle
         }
-        free(q); // İlk düğümü bellekten serbest bırak
+        free(q); // Ãlk dÃ¼Ã°Ã¼mÃ¼ bellekten serbest bÃ½rak
     } else {
         for (i = 0; i < index - 1; i++) {
-            p = p->next; // İndekse kadar ilerle
+            p = p->next; // Ãndekse kadar ilerle
         }
 
-        p->prev->next = p->next; // Önceki düğümün next işaretçisini güncelle
+        p->prev->next = p->next; // Ã–nceki dÃ¼Ã°Ã¼mÃ¼n next iÃ¾aretÃ§isini gÃ¼ncelle
 
         if (p->next) {
-            p->next->prev = p->prev; // Sonraki düğüm varsa, onun prev işaretçisini güncelle
+            p->next->prev = p->prev; // Sonraki dÃ¼Ã°Ã¼m varsa, onun prev iÃ¾aretÃ§isini gÃ¼ncelle
         }
 
-        x = p->data; // Silinen düğümün verisini sakla
-        free(p); // Düğümü bellekten serbest bırak
+        x = p->data; // Silinen dÃ¼Ã°Ã¼mÃ¼n verisini sakla
+        free(p); // DÃ¼Ã°Ã¼mÃ¼ bellekten serbest bÃ½rak
     }
 
-    return x; // Silinen düğümün verisini döndür
+    return x; // Silinen dÃ¼Ã°Ã¼mÃ¼n verisini dÃ¶ndÃ¼r
 }
 
 int main() {
     int A[] = {10, 20, 30, 40, 50};
 
-    // Listeyi oluştur
+    // Listeyi oluÃ¾tur
     Create(A, 5);
 	
 	Display(first);
-    // İlk elemanı sil
+    // Ãlk elemanÃ½ sil
     int deletedValue = Delete(first, 1);
     if (deletedValue != -1) {
         printf("\nSilinen deger: %d\n", deletedValue);
     } else {
-        printf("Geçersiz index.\n");
+        printf("GeÃ§ersiz index.\n");
     }
 
-    // Listeyi ekrana yazdır
+    // Listeyi ekrana yazdÃ½r
     Display(first);
 
     return 0;
